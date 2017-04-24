@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.plustech.print"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
+
+    <application
+        android:name="com.plustech.print.PrintApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".BaseActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme" 
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".congdongandroid.PhotoActivity" >
+        </activity>
+        <activity android:name=".congdongandroid.DocumentActivity" >
+        </activity>
+        <activity android:name=".congdongandroid.EmailActivity" >
+        </activity>
+        <activity android:name=".congdongandroid.WebActivity" >
+        </activity>
+        <activity
+            android:name=".congdongandroid.PrintPreviewImage"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".congdongandroid.PrintPreviewFull" >
+        </activity>
+        <activity android:name=".congdongandroid.PrintPreviewDocument" >
+        </activity>
+        <activity android:name=".congdongandroid.PrintPreviewWeb" >
+        </activity>
+        <activity android:name=".congdongandroid.PhotoActivityPicture" >
+        </activity>
+        <activity android:name=".congdongandroid.PrintSeting" >
+        </activity>
+        <activity android:name=".congdongandroid.PrintSelectPrinter" >
+        </activity>
+        <activity android:name=".activities.Welcome" >
+            <intent-filter>
+                <action android:name="com.plustech.mem.activities.Welcome" />
+            </intent-filter>
+        </activity>
+
+         <activity android:name="com.plustech.print.fileexplorer.FileExplorerMain"  android:configChanges="orientation"
+                  android:label="@string/app_name">
+        </activity>
+        
+        <receiver android:name="com.plustech.print.fileexplorer.ShareAppRequestReceiver">
+             <intent-filter>
+                <action android:name="com.plustech.print.fileexplorer.SHARE_APP" />
+            </intent-filter>
+        </receiver>
+        
+        <activity android:name="com.plustech.print.fileexplorer.SettingsActivity" android:label="@string/settings"></activity>
+        
+        
+        <service
+            android:name="com.plustech.print.service.PrintService"
+            android:enabled="true"
+            android:label="@string/app_name" >
+        </service>
+
+        <receiver
+            android:name="com.plustech.print.util.network.NetworkChangeReceiver"
+            android:label="NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.plustech.print.storage.PrinterProvider"
+            android:authorities="com.plustech.print.storage.PrinterProvider"
+            android:exported="false" />
+    </application>
+
+</manifest>
